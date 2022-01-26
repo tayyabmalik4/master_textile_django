@@ -59,6 +59,21 @@
         background-color: blue;
         color: white;
     }
+    .table2{
+        border-collapse: collapse;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        text-align: center;
+        border: none;
+    }
+    .table2 th,tr{
+        padding: 20px;
+    }
+    .table2 th{
+        background-color: blue;
+        color: white;
+    }
 
 
 </style>
@@ -105,17 +120,17 @@
     </div>
     <table class="table2" border=1>
         <tr>
-            <th>Temperature</th>
-            <th>Humidity</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
         </tr>
         {% for data in all %}
         <tr>
-            <td>{{data.temperature}}</td>
-            <td>{{data.humidity}}</td>
             <td>{{data.date|date:"d-m-Y"}}</td>
             <td>{{data.time|time:"H:i"}}</td>
+            <td>{{data.temperature}} <sup>o</sup>C</td>
+            <td>{{data.humidity}}%</td>
         </tr>
         {% endfor %}
     </table>
@@ -199,7 +214,6 @@
                 'rgba(255, 159, 64, 0.2)'
             ],
         borderColor: 'rgb(255, 99, 132)',
-        // data: [17.90,17.90,18.90,18.90,17.90,18.90],
         data:a
       },
       {
@@ -213,7 +227,6 @@
                 'rgba(255, 159, 64, 0.2)'
             ],
         borderColor: 'green',
-        // data: [17.90,17.90,18.90,18.90,17.90,18.90],
         data:b
       }
     ]
