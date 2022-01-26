@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Textile</title>
+</head>
+<style>
+    .main_div{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .main_div .logo{
+        height: 70px;
+        width: 100px;
+        margin: 20px;
+    }
+    .head_para{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: blue;
+        font-size: 13px;
+    }
+    .head_para .heading{
+        margin-top: 2rem;
+    }
+    .head_btn{
+        text-align: right;
+        font-size: 12px;
+    }
+    .head_btn .heading{
+        color: rgb(30, 153, 30);
+    }
+    .head_btn .btn{
+        color: blue;
+        background-color: transparent;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .table1{
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+    .table1, td, th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    .graph{
+        margin-top: 50px;
+    }
+    .table1 .head_row th{
+        padding: 10px;
+        background-color: blue;
+        color: white;
+    }
+
+
+</style>
+
+<body>
+    <div class="main_div">
+        <img class="logo" src="../static/logo.png" alt="Uploading">
+        <div class="head_para">
+            <h2 class="heading">PROCESSING UNIT-M2</h2>
+            <p>ENERGY & PRODUCTION COST ANALYSIS WITH REPORTING</p>
+        </div>
+        <div class="head_btn">
+            <h1 class="heading">RED FLAG BLEACHING</h1>
+            <button class="btn">BACK</button>
+        </div>
+    </div>
+    <table class="table1">
+        <tr class="head_row">
+            <th>Reporting</th>
+            <th>Date</th>
+            <th>Temperature</th> 
+            <th>Humidity</th>
+        </tr>
+        <tr>
+            <form action="/" method="POST">
+                {% csrf_token %}
+            <td> <input type="date" id="startdate" name="startdate"> </td>
+            <td></td>
+            <td>{{task.temperature}} <sup>o</sup>C</td>
+            <td>{{task.humidity}}%</td>
+        </tr>
+        <tr>
+            <td> <input type="date" id="enddate" name="enddate"> </td>
+            <td>Last Update</td>
+            <td>{{task.date|date:"d-m-Y"}} {{task.time|time:"H:i"}}</td>
+            <td>{{task.date|date:"d-m-Y"}} {{task.time|time:"H:i"}}</td>
+        </tr>
+        <tr>
+            <td><button type="submit" style="background-color: transparent; border: none; cursor: pointer; color: blue;">Report</button></td>
+        </tr>
+    </table>
+    <div class="graph">
+        <canvas id="canvas-temp" width="800px" height="200px"></canvas>
+    </div>
+    <table class="table2" border=1>
+        <tr>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        {% for data in all %}
+        <tr>
+            <td>{{data.temperature}}</td>
+            <td>{{data.humidity}}</td>
+            <td>{{data.date|date:"d-m-Y"}}</td>
+            <td>{{data.time|time:"H:i"}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</body>
+<!-- this is the link of chart -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+
+<!-- this is the graph of temperature and humidity -->
+<script> 
+    let a = JSON.parse('{{temperature|safe}}')
+    let b = JSON.parse('{{humidity|safe}}')
+    
+    let time1 = "{{time1|time:'H:i'}}"
+    let time2 = "{{time2|time:'H:i'}}"
+    let time3 = "{{time3|time:'H:i'}}"
+    let time4 = "{{time4|time:'H:i'}}"
+    let time5 = "{{time5|time:'H:i'}}"
+    let time6 = "{{time6|time:'H:i'}}"
+    let time7 = "{{time7|time:'H:i'}}"
+    let time8 = "{{time8|time:'H:i'}}"
+    let time9 = "{{time9|time:'H:i'}}"
+    let time10 = "{{time10|time:'H:i'}}"
+    let time11 = "{{time11|time:'H:i'}}"
+    let time12 = "{{time12|time:'H:i'}}"
+    let time13 = "{{time13|time:'H:i'}}"
+    let time14 = "{{time14|time:'H:i'}}"
+    let time15 = "{{time15|time:'H:i'}}"
+    let time16 = "{{time16|time:'H:i'}}"
+    let time17 = "{{time17|time:'H:i'}}"
+    let time18 = "{{time18|time:'H:i'}}"
+    let time19 = "{{time19|time:'H:i'}}"
+    let time20 = "{{time20|time:'H:i'}}"
+    let time21 = "{{time21|time:'H:i'}}"
+    let time22 = "{{time22|time:'H:i'}}"
+    let time23 = "{{time23|time:'H:i'}}"
+    let time24 = "{{time24|time:'H:i'}}"
+
+
+    const labels = [
+        // "{{date}}"
+      // "{{time}}"
+      time1,
+      time2,
+      time3,
+      time4,
+      time5,
+      time6,
+      time7,
+      time8,
+      time9,
+      time10,
+      time11,
+      time12,
+      time13,
+      time14,
+      time15,
+      time16,
+      time17,
+      time18,
+      time19,
+      time20,
+      time21,
+      time22,
+      time23,
+      time24,
+    ];
+  
+  
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+        label: 'Temperature',
+        backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+        borderColor: 'rgb(255, 99, 132)',
+        // data: [17.90,17.90,18.90,18.90,17.90,18.90],
+        data:a
+      },
+      {
+        label: 'Humidity',
+        backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+        borderColor: 'green',
+        // data: [17.90,17.90,18.90,18.90,17.90,18.90],
+        data:b
+      }
+    ]
+    };
+  
+    const config = {
+      type: 'line',
+      data: data,
+      options: {
+        scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+    };
+  
+    const myChart = new Chart(
+      document.getElementById('canvas-temp'),
+      config
+    );
+  </script>
+  <!-- this script is to reload the page after every 1 minute -->
+  <script>
+    setTimeout(function () {
+      window.location.reload(1);
+    }, 60000); 
+  </script>
+
+</html>
